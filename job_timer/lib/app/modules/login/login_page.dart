@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
                 height: 49,
                 child: ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(primary: Colors.grey[200]),
+                  style: ElevatedButton.styleFrom(primary: Colors.grey[100]),
                   child: Image.asset('assets/images/google.png'),
                 ),
               ),
