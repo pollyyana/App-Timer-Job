@@ -15,9 +15,9 @@ extension GetProjectCollection on Isar {
 const ProjectSchema = CollectionSchema(
   name: 'Project',
   schema:
-      '{"name":"Project","idName":"id","properties":[{"name":"name","type":"String"}],"indexes":[],"links":[{"name":"task","target":"ProjectTask"}]}',
+      '{"name":"Project","idName":"id","properties":[{"name":"name","type":"String"},{"name":"status","type":"Long"}],"indexes":[],"links":[{"name":"task","target":"ProjectTask"}]}',
   idName: 'id',
-  propertyIds: {'name': 0},
+  propertyIds: {'name': 0, 'status': 1},
   listProperties: {},
   indexIds: {},
   indexValueTypes: {},
@@ -52,6 +52,8 @@ List<IsarLinkBase> _projectGetLinks(Project object) {
   return [object.task];
 }
 
+const _projectProjectStatusConverters = ProjectStatusConverters();
+
 void _projectSerializeNative(
     IsarCollection<Project> collection,
     IsarRawObject rawObj,
@@ -63,6 +65,8 @@ void _projectSerializeNative(
   final value0 = object.name;
   final _name = IsarBinaryWriter.utf8Encoder.convert(value0);
   dynamicSize += (_name.length) as int;
+  final value1 = _projectProjectStatusConverters.toIsar(object.status);
+  final _status = value1;
   final size = staticSize + dynamicSize;
 
   rawObj.buffer = alloc(size);
@@ -70,6 +74,7 @@ void _projectSerializeNative(
   final buffer = IsarNative.bufAsBytes(rawObj.buffer, size);
   final writer = IsarBinaryWriter(buffer, staticSize);
   writer.writeBytes(offsets[0], _name);
+  writer.writeLong(offsets[1], _status);
 }
 
 Project _projectDeserializeNative(IsarCollection<Project> collection, int id,
@@ -77,6 +82,8 @@ Project _projectDeserializeNative(IsarCollection<Project> collection, int id,
   final object = Project();
   object.id = id;
   object.name = reader.readString(offsets[0]);
+  object.status =
+      _projectProjectStatusConverters.fromIsar(reader.readLong(offsets[1]));
   _projectAttachLinks(collection, id, object);
   return object;
 }
@@ -88,6 +95,9 @@ P _projectDeserializePropNative<P>(
       return id as P;
     case 0:
       return (reader.readString(offset)) as P;
+    case 1:
+      return (_projectProjectStatusConverters.fromIsar(reader.readLong(offset)))
+          as P;
     default:
       throw 'Illegal propertyIndex';
   }
@@ -98,6 +108,8 @@ dynamic _projectSerializeWeb(
   final jsObj = IsarNative.newJsObject();
   IsarNative.jsObjectSet(jsObj, 'id', object.id);
   IsarNative.jsObjectSet(jsObj, 'name', object.name);
+  IsarNative.jsObjectSet(
+      jsObj, 'status', _projectProjectStatusConverters.toIsar(object.status));
   return jsObj;
 }
 
@@ -106,6 +118,8 @@ Project _projectDeserializeWeb(
   final object = Project();
   object.id = IsarNative.jsObjectGet(jsObj, 'id');
   object.name = IsarNative.jsObjectGet(jsObj, 'name') ?? '';
+  object.status = _projectProjectStatusConverters.fromIsar(
+      IsarNative.jsObjectGet(jsObj, 'status') ?? double.negativeInfinity);
   _projectAttachLinks(collection, IsarNative.jsObjectGet(jsObj, 'id'), object);
   return object;
 }
@@ -116,6 +130,10 @@ P _projectDeserializePropWeb<P>(Object jsObj, String propertyName) {
       return (IsarNative.jsObjectGet(jsObj, 'id')) as P;
     case 'name':
       return (IsarNative.jsObjectGet(jsObj, 'name') ?? '') as P;
+    case 'status':
+      return (_projectProjectStatusConverters.fromIsar(
+          IsarNative.jsObjectGet(jsObj, 'status') ??
+              double.negativeInfinity)) as P;
     default:
       throw 'Illegal propertyName';
   }
@@ -345,6 +363,54 @@ extension ProjectQueryFilter
       caseSensitive: caseSensitive,
     ));
   }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> statusEqualTo(
+      ProjectStatus value) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.eq,
+      property: 'status',
+      value: _projectProjectStatusConverters.toIsar(value),
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> statusGreaterThan(
+    ProjectStatus value, {
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.gt,
+      include: include,
+      property: 'status',
+      value: _projectProjectStatusConverters.toIsar(value),
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> statusLessThan(
+    ProjectStatus value, {
+    bool include = false,
+  }) {
+    return addFilterConditionInternal(FilterCondition(
+      type: ConditionType.lt,
+      include: include,
+      property: 'status',
+      value: _projectProjectStatusConverters.toIsar(value),
+    ));
+  }
+
+  QueryBuilder<Project, Project, QAfterFilterCondition> statusBetween(
+    ProjectStatus lower,
+    ProjectStatus upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return addFilterConditionInternal(FilterCondition.between(
+      property: 'status',
+      lower: _projectProjectStatusConverters.toIsar(lower),
+      includeLower: includeLower,
+      upper: _projectProjectStatusConverters.toIsar(upper),
+      includeUpper: includeUpper,
+    ));
+  }
 }
 
 extension ProjectQueryLinks
@@ -375,6 +441,14 @@ extension ProjectQueryWhereSortBy on QueryBuilder<Project, Project, QSortBy> {
   QueryBuilder<Project, Project, QAfterSortBy> sortByNameDesc() {
     return addSortByInternal('name', Sort.desc);
   }
+
+  QueryBuilder<Project, Project, QAfterSortBy> sortByStatus() {
+    return addSortByInternal('status', Sort.asc);
+  }
+
+  QueryBuilder<Project, Project, QAfterSortBy> sortByStatusDesc() {
+    return addSortByInternal('status', Sort.desc);
+  }
 }
 
 extension ProjectQueryWhereSortThenBy
@@ -394,6 +468,14 @@ extension ProjectQueryWhereSortThenBy
   QueryBuilder<Project, Project, QAfterSortBy> thenByNameDesc() {
     return addSortByInternal('name', Sort.desc);
   }
+
+  QueryBuilder<Project, Project, QAfterSortBy> thenByStatus() {
+    return addSortByInternal('status', Sort.asc);
+  }
+
+  QueryBuilder<Project, Project, QAfterSortBy> thenByStatusDesc() {
+    return addSortByInternal('status', Sort.desc);
+  }
 }
 
 extension ProjectQueryWhereDistinct
@@ -406,6 +488,10 @@ extension ProjectQueryWhereDistinct
       {bool caseSensitive = true}) {
     return addDistinctByInternal('name', caseSensitive: caseSensitive);
   }
+
+  QueryBuilder<Project, Project, QDistinct> distinctByStatus() {
+    return addDistinctByInternal('status');
+  }
 }
 
 extension ProjectQueryProperty
@@ -416,5 +502,9 @@ extension ProjectQueryProperty
 
   QueryBuilder<Project, String, QQueryOperations> nameProperty() {
     return addPropertyNameInternal('name');
+  }
+
+  QueryBuilder<Project, ProjectStatus, QQueryOperations> statusProperty() {
+    return addPropertyNameInternal('status');
   }
 }
