@@ -4,10 +4,13 @@ import 'package:job_time/app/modules/home/home_module.dart';
 // import 'package:job_time/app/modules/home/home_module.dart';
 import 'package:job_time/app/modules/login/login_module.dart';
 import 'package:job_time/app/modules/splash/splash_page.dart';
+import 'package:job_time/app/services/auth/auth_service.dart';
+import 'package:job_time/app/services/auth/auth_service_impl.dart';
 
 class AppModule extends Module {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds =>
+      [Bind.lazySingleton<AuthService>((i) => AuthServiceImpl())];
 
   @override
   List<ModularRoute> get routes => [
