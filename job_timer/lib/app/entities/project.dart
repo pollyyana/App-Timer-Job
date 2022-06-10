@@ -11,6 +11,8 @@ class Project {
   int? id;
 
   late String name;
+  late int estimate;
+
   @ProjectStatusConverters()
   late ProjectStatus status;
 
