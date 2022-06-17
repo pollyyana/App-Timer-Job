@@ -1,0 +1,4 @@
+#Fri Jun 17 04:45:50 BRT 2022
+base.0=/home/ponto/dart_week/job_timer/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
