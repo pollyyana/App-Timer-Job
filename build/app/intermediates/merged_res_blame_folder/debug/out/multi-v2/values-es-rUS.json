@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ponto/dart_week/job_timer/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rUS/values-es-rUS.xml",
+            "outputFile": "/home/ponto/dart_week/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rUS/values-es-rUS.xml",
             "map": [
                 {
                     "source": "/home/ponto/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/res/values-es-rUS/values-es-rUS.xml",

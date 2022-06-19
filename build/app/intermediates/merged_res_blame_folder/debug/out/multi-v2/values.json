@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ponto/dart_week/job_timer/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/ponto/dart_week/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/home/ponto/.gradle/caches/transforms-3/b4d9754d8e99a0798e95c8a22973be17/transformed/browser-1.0.0/res/values/values.xml",
@@ -18,23 +18,6 @@
                         "startOffsets": "722,780,846,909,1774,1845",
                         "endColumns": "57,65,62,61,70,71",
                         "endOffsets": "775,841,904,966,1840,1912"
-                    }
-                },
-                {
-                    "source": "/home/ponto/dart_week/job_timer/build/app/generated/res/google-services/debug/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,281,385,494,614,710",
-                        "endColumns": "143,81,103,108,119,95,72",
-                        "endOffsets": "194,276,380,489,609,705,778"
-                    },
-                    "to": {
-                        "startLines": "126,127,128,129,130,131,132",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "8966,9110,9192,9296,9405,9525,9621",
-                        "endColumns": "143,81,103,108,119,95,72",
-                        "endOffsets": "9105,9187,9291,9400,9520,9616,9689"
                     }
                 },
                 {
@@ -93,6 +76,42 @@
                     }
                 },
                 {
+                    "source": "/home/ponto/dart_week/build/app/generated/res/google-services/debug/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,281,385,494,614,710",
+                        "endColumns": "143,81,103,108,119,95,72",
+                        "endOffsets": "194,276,380,489,609,705,778"
+                    },
+                    "to": {
+                        "startLines": "126,127,128,129,130,131,132",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "8966,9110,9192,9296,9405,9525,9621",
+                        "endColumns": "143,81,103,108,119,95,72",
+                        "endOffsets": "9105,9187,9291,9400,9520,9616,9689"
+                    }
+                },
+                {
+                    "source": "/home/ponto/dart_week/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,818",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "476,982"
+                    },
+                    "to": {
+                        "startLines": "134,139",
+                        "startColumns": "4,4",
+                        "startOffsets": "9765,10073",
+                        "endLines": "138,141",
+                        "endColumns": "12,12",
+                        "endOffsets": "10068,10237"
+                    }
+                },
+                {
                     "source": "/home/ponto/.gradle/caches/transforms-3/e1f53c96aa78f7b42431169b7cd59214/transformed/jetified-window-1.0.0-beta04/res/values/values.xml",
                     "from": {
                         "startLines": "2,7,8,9,10,11,19,23,34,51",
@@ -109,25 +128,6 @@
                         "endLines": "8,9,10,11,87,165,169,449,466,474",
                         "endColumns": "11,59,51,44,59,24,24,24,24,24",
                         "endOffsets": "400,460,512,557,5561,11697,11894,27406,28520,28913"
-                    }
-                },
-                {
-                    "source": "/home/ponto/dart_week/job_timer/android/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "476,982"
-                    },
-                    "to": {
-                        "startLines": "134,139",
-                        "startColumns": "4,4",
-                        "startOffsets": "9765,10073",
-                        "endLines": "138,141",
-                        "endColumns": "12,12",
-                        "endOffsets": "10068,10237"
                     }
                 },
                 {
